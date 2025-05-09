@@ -2,15 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Current Date App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DLX Exact Cover Solver</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1>Today's Date</h1>
-    <p id="date"></p>
+    <h1>Dancing Links Solver</h1>
+    <textarea id="matrixInput" placeholder="Enter binary matrix, one row per line (e.g. 1 0 1)"></textarea>
+    <button onclick="solve()">Solve</button>
+    <pre id="output"></pre>
   </div>
-  <script src="script.js"></script>
+  <script src="dlx.js"></script>
 </body>
 </html>
