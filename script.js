@@ -138,4 +138,6 @@ class Node {
       output.textContent = "No solution found.";
     }
   }
+
+window.solve = solve;
   
