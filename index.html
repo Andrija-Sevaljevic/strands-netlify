@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DLX Exact Cover Solver</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="container">
     <h1>Dancing Links Solver</h1>
@@ -36,15 +38,15 @@
       const cols = parseInt(document.getElementById("gridCols").value);
       const container = document.getElementById("letterGridContainer");
       container.innerHTML = "";
-    
+
       if (!rows || !cols || rows < 1 || cols < 1) {
         alert("Please enter valid grid dimensions.");
         return;
       }
-    
+
       const cellSize = Math.max(20, 40 - Math.max(rows, cols)); // Adjust size for large grids
       const table = document.createElement("table");
-    
+
       for (let r = 0; r < rows; r++) {
         const tr = document.createElement("tr");
         for (let c = 0; c < cols; c++) {
@@ -58,10 +60,10 @@
         }
         table.appendChild(tr);
       }
-    
+
       container.appendChild(table);
     }
-    
+
 
     function extractGrid() {
       const container = document.getElementById("letterGridContainer");
@@ -83,4 +85,5 @@
     }
   </script>
 </body>
+
 </html>
