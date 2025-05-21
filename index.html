@@ -5,31 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DLX Exact Cover Solver</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    table {
-      margin-top: 10px;
-      border-collapse: collapse;
-    }
-    table input {
-      font-size: 16px;
-      text-transform: uppercase;
-      width: 30px;
-      height: 30px;
-      text-align: center;
-    }
-    td {
-      border: 1px solid black;
-      padding: 5px;
-    }
-    .container {
-      padding: 20px;
-      max-width: 600px;
-      margin: auto;
-    }
-    #letterGridContainer {
-      margin-top: 15px;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
@@ -37,8 +12,10 @@
 
     <!-- Grid setup -->
     <div class="grid-setup">
-      <label for="gridSize">Grid Size (e.g. 4 for 4x4):</label>
-      <input type="number" id="gridSize" min="2" max="10" />
+      <label for="gridRows">Rows:</label>
+      <input type="number" id="gridRows" min="1" max="20" />
+      <label for="gridCols">Columns:</label>
+      <input type="number" id="gridCols" min="1" max="20" />
       <button onclick="generateLetterGrid()">Create Grid</button>
       <button onclick="extractGrid()">Log Grid to Console</button>
     </div>
@@ -52,26 +29,24 @@
     <pre id="output"></pre>
   </div>
 
-  <!-- External logic file -->
   <script src="dlx.js"></script>
-
-  <!-- Grid generation and extraction -->
   <script>
     function generateLetterGrid() {
-      const size = parseInt(document.getElementById("gridSize").value);
+      const rows = parseInt(document.getElementById("gridRows").value);
+      const cols = parseInt(document.getElementById("gridCols").value);
       const container = document.getElementById("letterGridContainer");
-      container.innerHTML = ""; // Clear any previous grid
+      container.innerHTML = "";
 
-      if (!size || size < 2) {
-        alert("Please enter a valid grid size (2 or more).");
+      if (!rows || !cols || rows < 1 || cols < 1) {
+        alert("Please enter valid grid dimensions.");
         return;
       }
 
       const table = document.createElement("table");
 
-      for (let row = 0; row < size; row++) {
+      for (let r = 0; r < rows; r++) {
         const tr = document.createElement("tr");
-        for (let col = 0; col < size; col++) {
+        for (let c = 0; c < cols; c++) {
           const td = document.createElement("td");
           const input = document.createElement("input");
           input.type = "text";

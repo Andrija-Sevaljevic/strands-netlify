@@ -32,3 +32,28 @@ body {
     margin-top: 1rem;
   }
   
+  table {
+    margin-top: 10px;
+    border-collapse: collapse;
+  }
+  
+  table input {
+    font-size: 16px;
+    text-transform: uppercase;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+  }
+  
+  td {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  
+  #letterGridContainer {
+    margin-top: 15px;
+  }
+  
+  .grid-setup {
+    margin-bottom: 20px;
+  }
