@@ -1,59 +1,76 @@
 body {
-    font-family: sans-serif;
-    background: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    padding-top: 50px;
-  }
-  
-  .container {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    width: 600px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-  
-  textarea {
-    width: 100%;
-    height: 150px;
-    font-family: monospace;
-    margin-bottom: 1rem;
-  }
-  
-  button {
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-  
-  pre {
-    background: #eee;
-    padding: 1rem;
-    margin-top: 1rem;
-  }
-  
-  table {
-    margin-top: 10px;
-    border-collapse: collapse;
-  }
-  
-  table input {
-    font-size: 16px;
-    text-transform: uppercase;
-    width: 30px;
-    height: 30px;
-    text-align: center;
-  }
-  
-  td {
-    border: 1px solid black;
-    padding: 5px;
-  }
-  
-  #letterGridContainer {
-    margin-top: 15px;
-  }
-  
-  .grid-setup {
-    margin-bottom: 20px;
-  }
+  font-family: sans-serif;
+  background: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 600px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  font-family: monospace;
+  margin-bottom: 1rem;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+pre {
+  background: #eee;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+table {
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+table input {
+  font-size: 16px;
+  text-transform: uppercase;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+
+td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+#letterGridContainer {
+  position: relative;
+  width: 100%;
+  padding-top: 100%;
+  /* 1:1 aspect ratio (height = width) */
+  margin-top: 15px;
+  overflow: auto;
+  border: 1px solid #ccc;
+}
+
+#letterGridContainer>table {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+
+.grid-setup {
+  margin-bottom: 20px;
+}
