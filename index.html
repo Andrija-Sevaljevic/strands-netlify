@@ -5,14 +5,104 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DLX Exact Cover Solver</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    table {
+      margin-top: 10px;
+      border-collapse: collapse;
+    }
+    table input {
+      font-size: 16px;
+      text-transform: uppercase;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+    }
+    td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+    .container {
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    #letterGridContainer {
+      margin-top: 15px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <h1>Dancing Links Solver</h1>
+
+    <!-- Grid setup -->
+    <div class="grid-setup">
+      <label for="gridSize">Grid Size (e.g. 4 for 4x4):</label>
+      <input type="number" id="gridSize" min="2" max="10" />
+      <button onclick="generateLetterGrid()">Create Grid</button>
+      <button onclick="extractGrid()">Log Grid to Console</button>
+    </div>
+
+    <!-- Dynamic grid appears here -->
+    <div id="letterGridContainer"></div>
+
+    <!-- DLX input -->
     <textarea id="matrixInput" placeholder="Enter binary matrix, one row per line (e.g. 1 0 1)"></textarea>
     <button onclick="solve()">Solve</button>
     <pre id="output"></pre>
   </div>
+
+  <!-- External logic file -->
   <script src="dlx.js"></script>
+
+  <!-- Grid generation and extraction -->
+  <script>
+    function generateLetterGrid() {
+      const size = parseInt(document.getElementById("gridSize").value);
+      const container = document.getElementById("letterGridContainer");
+      container.innerHTML = ""; // Clear any previous grid
+
+      if (!size || size < 2) {
+        alert("Please enter a valid grid size (2 or more).");
+        return;
+      }
+
+      const table = document.createElement("table");
+
+      for (let row = 0; row < size; row++) {
+        const tr = document.createElement("tr");
+        for (let col = 0; col < size; col++) {
+          const td = document.createElement("td");
+          const input = document.createElement("input");
+          input.type = "text";
+          input.maxLength = 1;
+          td.appendChild(input);
+          tr.appendChild(td);
+        }
+        table.appendChild(tr);
+      }
+
+      container.appendChild(table);
+    }
+
+    function extractGrid() {
+      const container = document.getElementById("letterGridContainer");
+      const rows = container.querySelectorAll("tr");
+      const grid = [];
+
+      rows.forEach(row => {
+        const inputs = row.querySelectorAll("input");
+        const rowData = [];
+        inputs.forEach(input => {
+          rowData.push(input.value.toUpperCase() || " ");
+        });
+        grid.push(rowData);
+      });
+
+      console.log("Extracted Grid:");
+      console.table(grid);
+      alert("Grid logged to console.");
+    }
+  </script>
 </body>
 </html>
