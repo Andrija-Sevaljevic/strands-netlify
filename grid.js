@@ -102,6 +102,41 @@ export async function loadDictionary(url) {
       )
     );
   }
+
+  function buildBinaryMatrix(foundWords, gridRows, gridCols) {
+    const totalCells = gridRows * gridCols;
+    const words = Object.keys(foundWords);
+  
+    // Create matrix: rows = words, cols = cells
+    // Initialize with 0s
+    const matrix = words.map(word => {
+      const pathSet = new Set(foundWords[word]);
+      // For each cell index from 1 to totalCells
+      return Array.from({ length: totalCells }, (_, idx) => pathSet.has(idx + 1) ? 1 : 0);
+    });
+  
+    return { matrix, words };
+  }
+  
+  // Optional: Format matrix as a string for textarea output
+  function matrixToString(matrix) {
+    return matrix.map(row => row.join(' ')).join('\n');
+  }
+  
+  // Use inside your convertGridToDLX or a separate function
+  export async function generateBinaryMatrix() {
+    const grid = extractGridFromUI();
+    const trie = await loadDictionary('words_alpha.txt');
+    const foundWords = findWordsInGrid(grid, trie);
+    const { matrix, words } = buildBinaryMatrix(foundWords, grid.length, grid[0].length);
+  
+    // Show matrix as string in textarea for your DLX solver input
+    document.getElementById("matrixInput").value = matrixToString(matrix);
+  
+    console.log("Words found:", words);
+    console.log("Binary matrix:\n", matrixToString(matrix));
+  }
+  
   
   export async function convertGridToDLX() {
     const grid = extractGridFromUI();
